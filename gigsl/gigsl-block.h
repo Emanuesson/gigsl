@@ -1,5 +1,5 @@
 /*
- * gsl-gir-block.h
+ * gigsl-block.h
  * This file is part of libggsl
  *
  * Copyright (C) 2013 - Emanuel Schmidt
@@ -20,41 +20,14 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef GGSL_BLOCK_H_INCLUDED
-#define GGSL_BLOCK_H_INCLUDED
+#ifndef LIBGGSL_DOUBLE_H_INCLUDED
+#define LIBGGSL_DOUBLE_H_INCLUDED
 
-#include <gsl/gsl_block.h>
-#include <glib.h>
-#include <gio/gio.h>
+#define __GGSL_H_INSIDE__
 
-G_BEGIN_DECLS
+#include <gigsl-block-double.h>
 
-/* structs */
-/**
- * GgslBlock:
- * @size: A single value that determines the size of the block
- * @data: (array length=size): An array of length size
- */
-//struct _GgslBlock
-//{
-//  gsize size;
-//  gdouble * data;
-//};
+#undef __GGSL_H_INSIDE__
 
-//typedef struct _GgslBlock GgslBlock;
-typedef struct gsl_block_struct GgslBlock;
-
-/* Type definitions */
-#define GGSL_TYPE_BLOCK\
-  (ggsl_block_get_type ())
-
-/* Public functions */
-GgslBlock *ggsl_block_alloc (const gsize n);
-/* ... */
-
-GType ggsl_block_get_type (void) G_GNUC_CONST;
-
-G_END_DECLS
-
-#endif /* GGSL_BLOCK_H_INCLUDED */
+#endif /* LIBGGSL_DOUBLE_H_INCLUDED */
 

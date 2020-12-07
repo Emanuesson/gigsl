@@ -43,45 +43,10 @@ libggsl_version_micro = version_arr[2].to_int()
 apiversion = '1.0'
 soversion = 0
 
-subdir('ggsl')
-
-python2_available = false
-python3_available = false
-python_gi_test_args = ['-c', 'import gi; print(gi._overridesdir)']
-python2_girdir = get_option('python2_girdir')
-python3_girdir = get_option('python3_girdir')
-
-if introspection_available
-  if python2_girdir != 'no'
-    python2 = find_program('python2', required : false)
-    if python2.found()
-      py2gi = run_command(python2, python_gi_test_args)
-      if py2gi.returncode() == 0
-        python2_available = true
-        if python2_girdir == 'auto'
-          python2_girdir = py2gi.stdout().strip()
-        endif
-      endif
-    endif
-  endif
-
-  if python3_girdir != 'no'
-    python3 = find_program('python3', required : false)
-    if python3.found()
-      py3gi = run_command(python3, python_gi_test_args)
-      if py3gi.returncode() == 0
-        python3_available = true
-        if python3_girdir == 'auto'
-          python3_girdir = py3gi.stdout().strip()
-        endif
-      endif
-    endif
-  endif
-endif
-
+subdir('gigsl')
 
 if get_option('enable_tests')
-  libggsl_so_build_dir = join_paths(meson.current_build_dir(), 'ggsl')
+  libgigsl_so_build_dir = join_paths(meson.current_build_dir(), 'gigsl')
   subdir('test')
 endif
 

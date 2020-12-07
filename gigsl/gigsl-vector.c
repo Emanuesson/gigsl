@@ -1,5 +1,5 @@
 /*
- * gsl-gir-block.c
+ * gigsl-vector.c
  * This file is part of libggsl
  *
  * Copyright (C) 2013 - Emanuel Schmidt
@@ -24,48 +24,22 @@
   #include <config.h>
 #endif
 
-#include "ggsl-block.h"
+#include "gigsl-vector.h"
 #include <string.h>
 
-static GgslBlock *
-ggsl_block_copy (const GgslBlock *block)
+static GslVector *
+gsl_vector_copy (const GslVector *vector)
 {
-  GgslBlock *result = g_new (GgslBlock, 1);
-
-  result->size = block->size;
-  result->data = g_new(double, block->size);
-  memcpy(result->data, block->data, block->size);
-
-  return result;
-}
-
-static void
-ggsl_block_free (GgslBlock *block)
-{
-  if (block->data != NULL)
-    g_free(block->data);
-
-  g_free(block);
+  return (GslVector *)gsl_vector_alloc_from_vector((gsl_vector *) vector,
+                                                   0,
+                                                   vector->size,
+                                                   vector->stride);
 }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-G_DEFINE_BOXED_TYPE (GgslBlock, ggsl_block,
-                     ggsl_block_copy,
-                     ggsl_block_free);
+G_DEFINE_BOXED_TYPE (GslVector, gsl_vector,
+                     gsl_vector_copy,
+                     (void (*)(GslVector *))gsl_vector_free);
 #pragma GCC diagnostic pop
-
-/**
- * ggsl_block_alloc:
- * @n: a size
- *
- * Returns: (nullable) (transfer full): a newly allocated block
- *
- * Since: 0.10
- */
-GgslBlock *ggsl_block_alloc (const gsize n)
-{
-  return (GgslBlock *)gsl_block_alloc(n);
-}
-
 

@@ -1,5 +1,5 @@
 /*
- * gsl-gir-vector.h
+ * gigsl-vector.h
  * This file is part of libggsl
  *
  * Copyright (C) 2013 - Emanuel Schmidt
@@ -23,81 +23,79 @@
 #ifndef GGSL_VECTOR_H_INCLUDED
 #define GGSL_VECTOR_H_INCLUDED
 
-#include <gsl/gsl_vector.h>
 #include <glib.h>
 #include <gio/gio.h>
-#include <ggsl-block.h>
+#include <gigsl-block-double.h>
+#include <gsl/gsl_vector_double.h>
 
 G_BEGIN_DECLS
 
 /* Just an idea that I will try next: */
 /**
- * gsl_vector:
+ * GslVector:
  * @size: A single value that determines the size of the vector
  * @stride:
  * @data: (array length=size): An array of length size
  * @block:
  * @owner:
  */
+struct _GslVector
+{
+  size_t size;
+  size_t stride;
+  double *data;
+  GslBlock *block;
+  int owner;
+};
+
+//#define _GslVector gsl_vector
+// gsl_vector;
+typedef struct _GslVector GslVector;
+
+/* Type definitions */
+#define GSL_TYPE_VECTOR\
+  (gsl_vector_get_type ())
+
+/* Public functions */
+
+ /**
+ * gsl_vector_alloc:
+ * @n:
+ * Returns: (nullable) (transfer full) (type GslVector):
+ */
+gsl_vector *gsl_vector_alloc (const size_t n);
+
+/**
+ * gsl_vector_calloc:
+ * @n:
+ * Returns: (nullable) (transfer full) (type GslVector):
+ */
+gsl_vector *gsl_vector_calloc (const size_t n);
+
+/**
+ * gsl_vector_free:
+ * @v: (not nullable) (type GslVector):
+ */
+void gsl_vector_free (gsl_vector * v);
+
 
 /**
  * gsl_vector_get:
- * @v: (not nullable):
+ * @v: (not nullable) (type GslVector):
  * @i:
- *
  * Returns:
- *
- * Since: 0.10
  */
+INLINE_DECL double gsl_vector_get (const gsl_vector * v, const size_t i);
 
 /**
  * gsl_vector_set:
- * @v: (not nullable):
+ * @v: (not nullable) (type GslVector):
  * @i:
  * @x:
- *
- * Since: 0.10
  */
+INLINE_DECL void gsl_vector_set (gsl_vector * v, const size_t i, double x);
 
-/* structs */
-
-/**
- * GgslVector: (type struct):
- * @size: A single value that determines the size of the vector
- * @stride:
- * @data: (array length=size): An array of length size
- * @block:
- * @owner:
- */
-struct _GgslVector
-{
-//  gsl_vector;
-  gsize size;
-  gsize stride;
-  gdouble *data;
-  GgslBlock *block;
-  gint owner;
-};
-//typedef gsl_vector _GgslVector;
-typedef struct _GgslVector GgslVector;
-
-/* Type definitions */
-#define GGSL_TYPE_VECTOR\
-  (ggsl_vector_get_type ())
-
-/* Public functions */
-GgslVector *ggsl_vector_alloc (const gsize n);
-
-GgslVector *ggsl_vector_calloc (const gsize n);
-
-void ggsl_vector_free (GgslVector * v);
-
-gdouble ggsl_vector_get (const GgslVector * v, const gsize i);
-
-void ggsl_vector_set (GgslVector * v, const gsize i, gsize x);
-/* ... */
-
-GType ggsl_vector_get_type (void) G_GNUC_CONST;
+GType gsl_vector_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
 

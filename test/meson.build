@@ -24,7 +24,7 @@ ggsl_test_link_args = [
 ]
 
 ggsl_test_deps = [
-  libggsl_dep
+  libgigsl_dep
 ]
 
 ggsl_test_srcs = [

@@ -23,18 +23,18 @@ python3 ../test/test-introspection/test-basic.py
 class BasicTest(unittest.TestCase):
     def setUp(self):
         gi.require_version ('Gtk', '3.0')
-        gi.require_version ('LibGgsl', '1.0')
+        gi.require_version ('LibGsl', '1.0')
 
     def testCalculation(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGgsl
-        print(dir(LibGgsl))
+        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        print(dir(LibGsl))
 
     def testVector(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGgsl
-        Vector = LibGgsl.vector_alloc(5)
+        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        Vector = LibGsl.vector_alloc(5)
         print(dir(Vector))
         Vector.set(4, 18.98)
-        print(Vector.get(4))
+        self.assertEqual(Vector.get(4), 18.98)
 
 if __name__ == '__main__':
     unittest.main()

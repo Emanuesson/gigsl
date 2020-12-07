@@ -1,18 +1,19 @@
 
-libggsl_sources = [
-  'ggsl.h',
-  'ggsl-block.h',
-  'ggsl-block.c',
-  'ggsl-vector.h',
-  'ggsl-vector.c',
+libgigsl_sources = [
+  'gigsl.h',
+  'gigsl-block.h',
+  'gigsl-block-double.h',
+  'gigsl-block-double.c',
+  'gigsl-vector.h',
+  'gigsl-vector.c',
   ]
 
 #libggsl_gir_sources += libggsl_headers
-libggsl_gir_sources = libggsl_sources
+libgigsl_sources = libgigsl_sources
 
-libggsl = library(
-  'ggsl',
-  libggsl_sources, #+ libggsl_private_headers +
+libgigsl = library(
+  'gigsl',
+  libgigsl_sources, #+ libggsl_private_headers +
 #  [ config_header ],
   pic: true,
 #  include_directories: [ root_inc ],
@@ -22,28 +23,28 @@ libggsl = library(
   install : true,
 )
 
-libggsl_dep = declare_dependency(
-    link_with : libggsl,
+libgigsl_dep = declare_dependency(
+    link_with : libgigsl,
 #    include_directories : [ root_inc, src_inc ],
     dependencies : [gobject, gsl ],
 )
 
 if introspection_available
-  libggsl_gir = gnome.generate_gir(libggsl,
-    sources: libggsl_gir_sources,
+  libgigsl_gir = gnome.generate_gir(libgigsl,
+    sources: libgigsl_sources,
     nsversion: apiversion,
-    namespace: 'LibGgsl',
-    symbol_prefix: 'ggsl',
-    identifier_prefix: 'Ggsl',
+    namespace: 'LibGsl',
+    symbol_prefix: 'gsl',
+    identifier_prefix: 'Gsl',
 #    link_with: libggsl,
 #    link_with: [libggslcomplex, libggslblock, libggslvector],
     includes: ['Gio-2.0', 'Gtk-3.0'],
     install: true,
     install_dir_gir: girdir,
     install_dir_typelib: typelibdir,
-    header: 'libggsl.h',
+    header: 'ggsl.h',
     fatal_warnings: true,
-    extra_args: [ '--c-include=src/libggsl.h', '--pkg-export=libggsl-1.0',
+    extra_args: [ '--c-include=gigsl/ggsl.h', '--pkg-export=libgigsl-1.0',
                   '--quiet' ],
 #    extra_args: [ '--verbose', '--warn-error', '--cflags-begin', '-fdump-tree-all', '--cflags-end' ],
 

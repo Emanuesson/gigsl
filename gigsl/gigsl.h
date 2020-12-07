@@ -1,5 +1,5 @@
 /*
- * libggsl.h
+ * gigsl.h
  * This file is part of libggsl
  *
  * Copyright (C) 2013 - Emanuel Schmidt
@@ -25,8 +25,8 @@
 
 #define __GGSL_H_INSIDE__
 
-#include <ggsl-block.h>
-#include <ggsl-vector.h>
+#include <gigsl-block.h>
+#include <gigsl-vector.h>
 
 #undef __GGSL_H_INSIDE__
 
