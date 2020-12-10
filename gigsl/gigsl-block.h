@@ -26,6 +26,8 @@
 #define __GGSL_H_INSIDE__
 
 #include <gigsl-block-double.h>
+#include <gigsl-block-int.h>
+#include <gigsl-block-ulong.h>
 
 #undef __GGSL_H_INSIDE__
 

@@ -1,5 +1,5 @@
 /*
- * gigsl-block.c
+ * gigsl-block-@ABBR_CTYPE@.c
  * This file is part of libggsl
  *
  * Copyright (C) 2013 - Emanuel Schmidt
@@ -24,16 +24,13 @@
   #include <config.h>
 #endif
 
-#include "gigsl-block-double.h"
+#include "gigsl-block-@ABBR_CTYPE@.h"
 #include <string.h>
 
-static GslBlock *
-gsl_block_copy (const GslBlock *block)
+static GslBlock@GLIB_STRUCT_AFFIX@ *
+gsl_block@GSLAFFIX@_copy (const GslBlock@GLIB_STRUCT_AFFIX@ *block)
 {
-  GslBlock *result = g_new (GslBlock, 1);
-
-  result->size = block->size;
-  result->data = g_new(double, block->size);
+  GslBlock@GLIB_STRUCT_AFFIX@ * result = gsl_block@GSLAFFIX@_alloc(block->size);
   memcpy(result->data, block->data, block->size);
 
   return result;
@@ -41,9 +38,9 @@ gsl_block_copy (const GslBlock *block)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-G_DEFINE_BOXED_TYPE (GslBlock, gsl_block,
-                     gsl_block_copy,
-                     gsl_block_free);
+G_DEFINE_BOXED_TYPE (GslBlock@GLIB_STRUCT_AFFIX@, gsl_block@GSLAFFIX@,
+                     gsl_block@GSLAFFIX@_copy,
+                     gsl_block@GSLAFFIX@_free);
 #pragma GCC diagnostic pop
 
 

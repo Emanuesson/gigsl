@@ -1,0 +1,90 @@
+/*
+ * gigsl-block-@ABBR_CTYPE@.h
+ * This file is part of libggsl
+ *
+ * Copyright (C) 2013 - Emanuel Schmidt
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
+#ifndef GGSL_BLOCK_@CAPITOL_TYPE@_H_INCLUDED
+#define GGSL_BLOCK_@CAPITOL_TYPE@_H_INCLUDED
+
+#include <gsl/gsl_block.h>
+#include <glib.h>
+#include <gio/gio.h>
+
+G_BEGIN_DECLS
+
+/* structs */
+/**
+ * GslBlock@GLIB_STRUCT_AFFIX@:
+ * @size: (type gsize): A single value that determines the size of the block
+ * @data: (type @GLIB_TYPE@*) (array length=size): An array of length size
+ */
+typedef struct gsl_block@GSLAFFIX@_struct GslBlock@GLIB_STRUCT_AFFIX@;
+
+/* Type definitions */
+#define GSL_TYPE_BLOCK@GLIB_MACRO_AFFIX@\
+  (gsl_block@GSLAFFIX@_get_type ())
+
+/* Public functions */
+/**
+ * gsl_block@GSLAFFIX@_alloc:
+ * @n:
+ *
+ * Returns: (nullable) (transfer full):
+ */
+GslBlock@GLIB_STRUCT_AFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
+
+/**
+ * gsl_block@GSLAFFIX@_calloc:
+ * @n:
+ *
+ * Returns: (nullable) (transfer full):
+ */
+GslBlock@GLIB_STRUCT_AFFIX@ *gsl_block@GSLAFFIX@_calloc (const size_t n);
+
+/**
+ * gsl_block@GSLAFFIX@_free:
+ * @b:
+ */
+void gsl_block@GSLAFFIX@_free (GslBlock@GLIB_STRUCT_AFFIX@ * b);
+
+/**
+ * gsl_block@GSLAFFIX@_size:
+ * @b:
+ *
+ * Returns:
+ */
+size_t gsl_block@GSLAFFIX@_size (const GslBlock@GLIB_STRUCT_AFFIX@ * b);
+
+/*
+ * gsl_block@GSLAFFIX@_data:
+ * @b:
+ *
+ * Returns: (nullable) (transfer none) (array):
+ */
+/* FIXME: The size of the returned array cannot be specified by introspection.
+ *        This renders the block-structure pointless. */
+//@CTYPE@ * gsl_block@GSLAFFIX@_data (const GslBlock@GLIB_STRUCT_AFFIX@ * b);
+
+GType gsl_block@GSLAFFIX@_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
+
+#endif /* GGSL_BLOCK_@CAPITOL_TYPE@_H_INCLUDED */
+

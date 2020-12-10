@@ -9,3 +9,10 @@ test('tggsl-introspection-basic', python,
   args: ['test-basic.py', ],
 )
 
+test('tggsl-introspection-block-double', python,
+  workdir: meson.current_source_dir(),
+  depends: [ libgigsl_gir ],
+  env: introsp_test_env,
+  args: ['test-block-double.py', ],
+)
+
