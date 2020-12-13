@@ -34,3 +34,22 @@ if introspection_available
   subdir('test-introspection')
 endif
 
+gigsl_tests = [
+  ['test-vector'],
+  ['test-matrix'],
+]
+
+
+foreach t: gigsl_tests
+  test_name = t.get(0)
+  test_srcs = ['@0@.c'.format(test_name), t.get(1, [])]
+  test(test_name,
+    executable(test_name, test_srcs,
+    include_directories: [root_inc, src_inc, build_inc],
+    c_args: ggsl_test_cflags,
+    dependencies: ggsl_test_deps),
+  env: ggsl_test_env,
+  )
+endforeach
+
+

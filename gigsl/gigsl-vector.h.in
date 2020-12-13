@@ -25,8 +25,8 @@
 
 #include <glib.h>
 #include <gio/gio.h>
-#include <gigsl-block-double.h>
-#include <gsl/gsl_vector_double.h>
+#include <gigsl-block-@ABBR_CTYPE@.h>
+#include <gsl/gsl_vector_@ABBR_CTYPE@.h>
 
 G_BEGIN_DECLS
 
@@ -36,62 +36,66 @@ G_BEGIN_DECLS
  * @size: (type gsize): A single value that determines the size of the vector
  * @stride: (type gsize):
  * @data:  (type gdouble*) (array length=size): An array of length size
- * @block:
+ * @block: (type GslBlock*):
  * @owner: (type gint):
  */
+#ifdef GIR_SCANNER
 struct _GslVector@GLIB_STRUCT_AFFIX@
 {
   size_t size;
   size_t stride;
-  double *data;
-  GslBlock *block;
+  @CTYPE@ *data;
+  gsl_block@GSLAFFIX@ *block;
   int owner;
 };
 typedef struct _GslVector@GLIB_STRUCT_AFFIX@ GslVector@GLIB_STRUCT_AFFIX@;
+#else
+typedef gsl_vector@GSLAFFIX@ GslVector@GLIB_STRUCT_AFFIX@;
+#endif
 
 /* Type definitions */
 #define GSL_TYPE_VECTOR@GLIB_MACRO_AFFIX@\
-  (gsl_vector_get_type ())
+  (gsl_vector@GSLAFFIX@_get_type ())
 
 /* Public functions */
 
  /**
- * gsl_vector_alloc:
- * @n:
+ * gsl_vector@GSLAFFIX@_alloc:
+ * @n: (type gsize):
  * Returns: (nullable) (transfer full) (type GslVector@GLIB_STRUCT_AFFIX@):
  */
-gsl_vector *gsl_vector_alloc (const size_t n);
+gsl_vector@GSLAFFIX@ *gsl_vector@GSLAFFIX@_alloc (const size_t n);
 
 /**
- * gsl_vector_calloc:
- * @n:
+ * gsl_vector@GSLAFFIX@_calloc:
+ * @n: (type gsize):
  * Returns: (nullable) (transfer full) (type GslVector@GLIB_STRUCT_AFFIX@):
  */
-gsl_vector *gsl_vector_calloc (const size_t n);
+gsl_vector@GSLAFFIX@ *gsl_vector@GSLAFFIX@_calloc (const size_t n);
 
 /**
- * gsl_vector_free:
+ * gsl_vector@GSLAFFIX@_free:
  * @v: (not nullable) (type GslVector@GLIB_STRUCT_AFFIX@):
  */
-void gsl_vector_free (gsl_vector * v);
+void gsl_vector@GSLAFFIX@_free (gsl_vector@GSLAFFIX@ * v);
 
 /**
- * gsl_vector_get:
+ * gsl_vector@GSLAFFIX@_get:
  * @v: (not nullable) (type GslVector@GLIB_STRUCT_AFFIX@):
- * @i:
+ * @i: (type gsize):
  * Returns:
  */
-INLINE_DECL double gsl_vector_get (const gsl_vector * v, const size_t i);
+INLINE_DECL @CTYPE@ gsl_vector@GSLAFFIX@_get (const gsl_vector@GSLAFFIX@ * v, const size_t i);
 
 /**
- * gsl_vector_set:
+ * gsl_vector@GSLAFFIX@_set:
  * @v: (not nullable) (type GslVector@GLIB_STRUCT_AFFIX@):
- * @i:
+ * @i: (type gsize):
  * @x:
  */
-INLINE_DECL void gsl_vector_set (gsl_vector * v, const size_t i, double x);
+INLINE_DECL void gsl_vector@GSLAFFIX@_set (gsl_vector@GSLAFFIX@ * v, const size_t i, @CTYPE@ x);
 
-GType gsl_vector_get_type (void) G_GNUC_CONST;
+GType gsl_vector@GSLAFFIX@_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
 

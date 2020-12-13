@@ -20,16 +20,23 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef LIBGGSL_DOUBLE_H_INCLUDED
-#define LIBGGSL_DOUBLE_H_INCLUDED
+#ifndef LIBGGSL_BLOCK_H_INCLUDED
+#define LIBGGSL_BLOCK_H_INCLUDED
 
 #define __GGSL_H_INSIDE__
 
-#include <gigsl-block-double.h>
-#include <gigsl-block-int.h>
-#include <gigsl-block-ulong.h>
+#include <gigsl/gigsl-block-double.h>
+#include <gigsl/gigsl-block-float.h>
+#include <gigsl/gigsl-block-ulong.h>
+#include <gigsl/gigsl-block-long.h>
+#include <gigsl/gigsl-block-uint.h>
+#include <gigsl/gigsl-block-int.h>
+#include <gigsl/gigsl-block-ushort.h>
+#include <gigsl/gigsl-block-short.h>
+#include <gigsl/gigsl-block-uchar.h>
+#include <gigsl/gigsl-block-char.h>
 
 #undef __GGSL_H_INSIDE__
 
-#endif /* LIBGGSL_DOUBLE_H_INCLUDED */
+#endif /* LIBGGSL_BLOCK_H_INCLUDED */
 

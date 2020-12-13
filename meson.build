@@ -39,6 +39,10 @@ libggsl_version_major = version_arr[0].to_int()
 libggsl_version_minor = version_arr[1].to_int()
 libggsl_version_micro = version_arr[2].to_int()
 
+root_inc = include_directories('.')
+src_inc = include_directories('gigsl')
+top_build_dir = meson.current_build_dir()
+build_inc = include_directories('./build')
 
 apiversion = '1.0'
 soversion = 0

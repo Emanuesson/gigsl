@@ -25,8 +25,9 @@
 
 #define __GGSL_H_INSIDE__
 
-#include <gigsl-block.h>
-#include <gigsl-vector.h>
+#include <gigsl/gigsl-block.h>
+#include <gigsl/gigsl-vector.h>
+#include <gigsl/gigsl-matrix.h>
 
 #undef __GGSL_H_INSIDE__
 

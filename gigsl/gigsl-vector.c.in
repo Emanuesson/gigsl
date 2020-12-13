@@ -28,9 +28,9 @@
 #include <string.h>
 
 static GslVector@GLIB_STRUCT_AFFIX@ *
-gsl_vector_copy (const GslVector@GLIB_STRUCT_AFFIX@ *vector)
+gsl_vector@GSLAFFIX@_copy (const GslVector@GLIB_STRUCT_AFFIX@ *vector)
 {
-  return (GslVector@GLIB_STRUCT_AFFIX@ *)gsl_vector_alloc_from_vector((gsl_vector *) vector,
+  return (GslVector@GLIB_STRUCT_AFFIX@ *)gsl_vector@GSLAFFIX@_alloc_from_vector((gsl_vector@GSLAFFIX@ *) vector,
                                                    0,
                                                    vector->size,
                                                    vector->stride);
@@ -38,8 +38,9 @@ gsl_vector_copy (const GslVector@GLIB_STRUCT_AFFIX@ *vector)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-G_DEFINE_BOXED_TYPE (GslVector@GLIB_STRUCT_AFFIX@, gsl_vector,
-                     gsl_vector_copy,
-                     (void (*)(GslVector@GLIB_STRUCT_AFFIX@ *))gsl_vector_free);
+G_DEFINE_BOXED_TYPE (GslVector@GLIB_STRUCT_AFFIX@,
+                     gsl_vector@GSLAFFIX@,
+                     gsl_vector@GSLAFFIX@_copy,
+                     (void (*)(GslVector@GLIB_STRUCT_AFFIX@ *))gsl_vector@GSLAFFIX@_free);
 #pragma GCC diagnostic pop
 

@@ -1,5 +1,5 @@
 /*
- * gigsl-vector.h
+ * gigsl-matrix-@ABBR_CTYPE@.c
  * This file is part of libggsl
  *
  * Copyright (C) 2013 - Emanuel Schmidt
@@ -20,23 +20,27 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef LIBGGSL_VECTOR_H_INCLUDED
-#define LIBGGSL_VECTOR_H_INCLUDED
+#ifdef HAVE_CONFIG_H
+  #include <config.h>
+#endif
 
-#define __GGSL_H_INSIDE__
+#include "gigsl-matrix-@ABBR_CTYPE@.h"
+#include <string.h>
 
-#include <gigsl/gigsl-vector-double.h>
-#include <gigsl/gigsl-vector-float.h>
-#include <gigsl/gigsl-vector-ulong.h>
-#include <gigsl/gigsl-vector-long.h>
-#include <gigsl/gigsl-vector-uint.h>
-#include <gigsl/gigsl-vector-int.h>
-#include <gigsl/gigsl-vector-ushort.h>
-#include <gigsl/gigsl-vector-short.h>
-#include <gigsl/gigsl-vector-uchar.h>
-#include <gigsl/gigsl-vector-char.h>
+static GslMatrix@GLIB_STRUCT_AFFIX@ *
+gsl_matrix@GSLAFFIX@_copy (const GslMatrix@GLIB_STRUCT_AFFIX@ *matrix)
+{
+  GslMatrix@GLIB_STRUCT_AFFIX@ * result =
+    (GslMatrix@GLIB_STRUCT_AFFIX@ *) gsl_matrix@GSLAFFIX@_alloc_from_matrix((gsl_matrix@GSLAFFIX@ *) matrix, 0, 0, matrix->size1, matrix->size2);
 
-#undef __GGSL_H_INSIDE__
+  return result;
+}
 
-#endif /* LIBGGSL_VECTOR_H_INCLUDED */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+G_DEFINE_BOXED_TYPE (GslMatrix@GLIB_STRUCT_AFFIX@,
+                     gsl_matrix@GSLAFFIX@,
+                     gsl_matrix@GSLAFFIX@_copy,
+                     (void (*)(GslMatrix@GLIB_STRUCT_AFFIX@ *)) gsl_matrix@GSLAFFIX@_free);
+#pragma GCC diagnostic pop
 

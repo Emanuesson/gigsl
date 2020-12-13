@@ -35,7 +35,16 @@ G_BEGIN_DECLS
  * @size: (type gsize): A single value that determines the size of the block
  * @data: (type @GLIB_TYPE@*) (array length=size): An array of length size
  */
-typedef struct gsl_block@GSLAFFIX@_struct GslBlock@GLIB_STRUCT_AFFIX@;
+#ifdef GIR_SCANNER
+struct _GslBlock@GLIB_STRUCT_AFFIX@
+{
+  size_t size;
+  @CTYPE@ *data;
+};
+typedef struct _GslBlock@GLIB_STRUCT_AFFIX@ GslBlock@GLIB_STRUCT_AFFIX@;
+#else
+typedef gsl_block@GSLAFFIX@ GslBlock@GLIB_STRUCT_AFFIX@;
+#endif
 
 /* Type definitions */
 #define GSL_TYPE_BLOCK@GLIB_MACRO_AFFIX@\
@@ -46,41 +55,37 @@ typedef struct gsl_block@GSLAFFIX@_struct GslBlock@GLIB_STRUCT_AFFIX@;
  * gsl_block@GSLAFFIX@_alloc:
  * @n:
  *
- * Returns: (nullable) (transfer full):
+ * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@):
  */
-GslBlock@GLIB_STRUCT_AFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
+gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
 
 /**
  * gsl_block@GSLAFFIX@_calloc:
  * @n:
  *
- * Returns: (nullable) (transfer full):
+ * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@):
  */
-GslBlock@GLIB_STRUCT_AFFIX@ *gsl_block@GSLAFFIX@_calloc (const size_t n);
+gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_calloc (const size_t n);
 
 /**
  * gsl_block@GSLAFFIX@_free:
- * @b:
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@):
  */
-void gsl_block@GSLAFFIX@_free (GslBlock@GLIB_STRUCT_AFFIX@ * b);
+void gsl_block@GSLAFFIX@_free (gsl_block@GSLAFFIX@ * b);
 
-/**
- * gsl_block@GSLAFFIX@_size:
- * @b:
- *
- * Returns:
- */
-size_t gsl_block@GSLAFFIX@_size (const GslBlock@GLIB_STRUCT_AFFIX@ * b);
+/* TODO: Currently, all functions that contain a FILE-descriptor either as
+ *       return value or as parameter cannot easily be used together with
+ *       introspection. This is especially unfortunate, as these functions
+ *       are mostly usefull to dump the content of a data-structure into a
+ *       memory buffer or onto disk. */
 
-/*
- * gsl_block@GSLAFFIX@_data:
- * @b:
- *
- * Returns: (nullable) (transfer none) (array):
+/* Please note: Functions to access structure members, such as
+ * gsl_block@GSLAFFIX@_size and gsl_block@GSLAFFIX@_data are
+ * neglected by intend. Especially the data-access function is problematic for
+ * introspection, as the length of the returned data cannot be made accessible
+ * to introspection. Therefore, the underlying structure members are a better
+ * choice to handle access.
  */
-/* FIXME: The size of the returned array cannot be specified by introspection.
- *        This renders the block-structure pointless. */
-//@CTYPE@ * gsl_block@GSLAFFIX@_data (const GslBlock@GLIB_STRUCT_AFFIX@ * b);
 
 GType gsl_block@GSLAFFIX@_get_type (void) G_GNUC_CONST;
 

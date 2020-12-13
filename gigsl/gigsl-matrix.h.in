@@ -1,0 +1,147 @@
+/*
+ * gigsl-matrix-@ABBR_CTYPE@.h
+ * This file is part of libggsl
+ *
+ * Copyright (C) 2013 - Emanuel Schmidt
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
+#ifndef GGSL_MATRIX_@CAPITOL_TYPE@_H_INCLUDED
+#define GGSL_MATRIX_@CAPITOL_TYPE@_H_INCLUDED
+
+#include <gsl/gsl_matrix_@ABBR_CTYPE@.h>
+#include <glib.h>
+#include <gio/gio.h>
+
+G_BEGIN_DECLS
+
+/* structs */
+/**
+ * GslMatrix@GLIB_STRUCT_AFFIX@:
+ * @size1: (type gsize):
+ * @size2: (type gsize):
+ * @tda: (type gsize):
+ * @data: (type @GLIB_TYPE@*) (array length=size1):
+ * @block: (type GslBlock@GLIB_STRUCT_AFFIX@):
+ * @owner: (type gint):
+ */
+#ifdef GIR_SCANNER
+struct _GslMatrix@GLIB_STRUCT_AFFIX@
+{
+  size_t size1;
+  size_t size2;
+  size_t tda;
+  @CTYPE@ * data;
+  gsl_block@GSLAFFIX@ * block;
+  int owner;
+};
+typedef struct _GslMatrix@GLIB_STRUCT_AFFIX@ GslMatrix@GLIB_STRUCT_AFFIX@;
+#else
+typedef gsl_matrix@GSLAFFIX@ GslMatrix@GLIB_STRUCT_AFFIX@;
+#endif
+
+/* Type definitions */
+#define GSL_TYPE_MATRIX@GLIB_MACRO_AFFIX@\
+  (gsl_matrix@GSLAFFIX@_get_type ())
+
+/* Public functions */
+/**
+ * gsl_matrix@GSLAFFIX@_alloc:
+ * @n1: (type gsize):
+ * @n2: (type gsize):
+ *
+ * Returns: (nullable) (transfer full) (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ */
+gsl_matrix@GSLAFFIX@ *gsl_matrix@GSLAFFIX@_alloc (const size_t n1, const size_t n2);
+
+/**
+ * gsl_matrix@GSLAFFIX@_calloc:
+ * @n1: (type gsize):
+ * @n2: (type gsize):
+ *
+ * Returns: (nullable) (transfer full) (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ */
+gsl_matrix@GSLAFFIX@ *gsl_matrix@GSLAFFIX@_calloc (const size_t n1, const size_t n2);
+
+/**
+ * gsl_matrix@GSLAFFIX@_alloc_from_block:
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@):
+ * @offset: (type gsize):
+ * @n1: (type gsize):
+ * @n2: (type gsize):
+ * @d2: (type gsize):
+ *
+ * Returns: (nullable) (transfer full) (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ */
+gsl_matrix@GSLAFFIX@ *
+gsl_matrix@GSLAFFIX@_alloc_from_block (gsl_block@GSLAFFIX@ * b,
+                                       const size_t offset,
+                                       const size_t n1,
+                                       const size_t n2,
+                                       const size_t d2);
+
+/**
+ * gsl_matrix@GSLAFFIX@_alloc_from_matrix:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ * @n1: (type gsize):
+ * @n2: (type gsize):
+ * @k1: (type gsize):
+ * @k2: (type gsize):
+ *
+ * Returns: (nullable) (transfer full) (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ */
+gsl_matrix@GSLAFFIX@ *
+gsl_matrix@GSLAFFIX@_alloc_from_matrix (gsl_matrix@GSLAFFIX@ * m,
+                                        const size_t k1,
+                                        const size_t k2,
+                                        const size_t n1,
+                                        const size_t n2);
+
+/**
+ * gsl_vector@GSLAFFIX@_alloc_row_from_matrix:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ * @i: (type gsize):
+ *
+ * Returns: (nullable) (transfer full) (type GslVector@GLIB_STRUCT_AFFIX@):
+ */
+gsl_vector@GSLAFFIX@ *
+gsl_vector@GSLAFFIX@_alloc_row_from_matrix (gsl_matrix@GSLAFFIX@ * m,
+                                            const size_t i);
+
+/**
+ * gsl_vector@GSLAFFIX@_alloc_col_from_matrix:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ * @j: (type gsize):
+ *
+ * Returns: (nullable) (transfer full) (type GslVector@GLIB_STRUCT_AFFIX@):
+ */
+gsl_vector@GSLAFFIX@ *
+gsl_vector@GSLAFFIX@_alloc_col_from_matrix (gsl_matrix@GSLAFFIX@ * m,
+                                            const size_t j);
+
+/**
+ * gsl_matrix@GSLAFFIX@_free:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@):
+ */
+void gsl_matrix@GSLAFFIX@_free (gsl_matrix@GSLAFFIX@ * m);
+
+GType gsl_matrix@GSLAFFIX@_get_type (void) G_GNUC_CONST;
+
+G_END_DECLS
+
+#endif /* GGSL_MATRIX_@CAPITOL_TYPE@_H_INCLUDED */
+

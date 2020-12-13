@@ -30,7 +30,7 @@
 static GslBlock@GLIB_STRUCT_AFFIX@ *
 gsl_block@GSLAFFIX@_copy (const GslBlock@GLIB_STRUCT_AFFIX@ *block)
 {
-  GslBlock@GLIB_STRUCT_AFFIX@ * result = gsl_block@GSLAFFIX@_alloc(block->size);
+  GslBlock@GLIB_STRUCT_AFFIX@ * result = (GslBlock@GLIB_STRUCT_AFFIX@ *) gsl_block@GSLAFFIX@_alloc(block->size);
   memcpy(result->data, block->data, block->size);
 
   return result;
@@ -38,9 +38,10 @@ gsl_block@GSLAFFIX@_copy (const GslBlock@GLIB_STRUCT_AFFIX@ *block)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-G_DEFINE_BOXED_TYPE (GslBlock@GLIB_STRUCT_AFFIX@, gsl_block@GSLAFFIX@,
+G_DEFINE_BOXED_TYPE (GslBlock@GLIB_STRUCT_AFFIX@,
+                     gsl_block@GSLAFFIX@,
                      gsl_block@GSLAFFIX@_copy,
-                     gsl_block@GSLAFFIX@_free);
+                     (void (*)(GslBlock@GLIB_STRUCT_AFFIX@ *)) gsl_block@GSLAFFIX@_free);
 #pragma GCC diagnostic pop
 
 

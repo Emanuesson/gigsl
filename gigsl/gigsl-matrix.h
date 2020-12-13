@@ -1,5 +1,5 @@
 /*
- * gigsl-vector.h
+ * gigsl-matrix.h
  * This file is part of libggsl
  *
  * Copyright (C) 2013 - Emanuel Schmidt
@@ -20,23 +20,23 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef LIBGGSL_VECTOR_H_INCLUDED
-#define LIBGGSL_VECTOR_H_INCLUDED
+#ifndef LIBGGSL_MATRIX_H_INCLUDED
+#define LIBGGSL_MATRIX_H_INCLUDED
 
 #define __GGSL_H_INSIDE__
 
-#include <gigsl/gigsl-vector-double.h>
-#include <gigsl/gigsl-vector-float.h>
-#include <gigsl/gigsl-vector-ulong.h>
-#include <gigsl/gigsl-vector-long.h>
-#include <gigsl/gigsl-vector-uint.h>
-#include <gigsl/gigsl-vector-int.h>
-#include <gigsl/gigsl-vector-ushort.h>
-#include <gigsl/gigsl-vector-short.h>
-#include <gigsl/gigsl-vector-uchar.h>
-#include <gigsl/gigsl-vector-char.h>
+#include <gigsl/gigsl-matrix-double.h>
+#include <gigsl/gigsl-matrix-float.h>
+#include <gigsl/gigsl-matrix-ulong.h>
+#include <gigsl/gigsl-matrix-long.h>
+#include <gigsl/gigsl-matrix-uint.h>
+#include <gigsl/gigsl-matrix-int.h>
+#include <gigsl/gigsl-matrix-ushort.h>
+#include <gigsl/gigsl-matrix-short.h>
+#include <gigsl/gigsl-matrix-uchar.h>
+#include <gigsl/gigsl-matrix-char.h>
 
 #undef __GGSL_H_INSIDE__
 
-#endif /* LIBGGSL_VECTOR_H_INCLUDED */
+#endif /* LIBGGSL_MATRIX_H_INCLUDED */
 
