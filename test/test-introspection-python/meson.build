@@ -5,7 +5,7 @@ introsp_test_env.set('LD_LIBRARY_PATH', libgigsl_so_build_dir)
 gigsl_tests = [
   ['test-basic'],
   ['test-block-double'],
-#  ['test-matrix'],
+  ['test-matrix'],
 ]
 
 foreach t: gigsl_tests

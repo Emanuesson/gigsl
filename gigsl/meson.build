@@ -5,7 +5,6 @@ libgigsl_sources = [
   'gigsl-matrix.h',
   ]
 
-#libggsl_gir_sources += libggsl_headers
 libgigsl_sources = libgigsl_sources
 
 gigsl_double_cdata = configuration_data()
@@ -398,23 +397,17 @@ libgigsl_sources += gen_files
 libgigsl = library(
   'gigsl',
   libgigsl_sources, #+ libggsl_private_headers +
-#  [ config_header ],
   pic: true,
-#  include_directories: [ root_inc ],
-#  version: libversion,
   dependencies : [ gobject, gsl, gio ],
-#  link_whole: [ libggslcomplex, libggslblock, libggslvector, libggslmatrix ],
   install : true,
 )
 
 libgigsl_dep = declare_dependency(
     link_with : libgigsl,
-#    include_directories : [ root_inc, src_inc ],
     dependencies : [gobject, gsl ],
 )
 
 # TODO: remove "GIR_SCANNER" for installed headers
-
 if introspection_available
   libgigsl_gir = gnome.generate_gir(libgigsl,
     sources: libgigsl_sources,

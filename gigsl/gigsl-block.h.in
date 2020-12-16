@@ -55,7 +55,7 @@ typedef gsl_block@GSLAFFIX@ GslBlock@GLIB_STRUCT_AFFIX@;
  * gsl_block@GSLAFFIX@_alloc:
  * @n:
  *
- * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@):
+ * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
 gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
 
@@ -63,13 +63,13 @@ gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
  * gsl_block@GSLAFFIX@_calloc:
  * @n:
  *
- * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@):
+ * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
 gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_calloc (const size_t n);
 
 /**
  * gsl_block@GSLAFFIX@_free:
- * @b: (type GslBlock@GLIB_STRUCT_AFFIX@):
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
 void gsl_block@GSLAFFIX@_free (gsl_block@GSLAFFIX@ * b);
 

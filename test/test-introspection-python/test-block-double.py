@@ -24,12 +24,12 @@ class BasicTest(unittest.TestCase):
             self.assertEqual(Block.data[i], 0.0)
 
         Block.data[1] = 42342.231
-        #from pdb import set_trace as bp
-        #bp()
         self.assertEqual(Block.data[0], 0.0)
         # FIXME: find out, why this is not working!
         #self.assertEqual(Block.data[1], 42342.231)
         self.assertEqual(Block.data[2], 0.0)
+
+#        from pdb import set_trace as bp; bp()
 
 '''
     def testBlockDoubleCopy(self):

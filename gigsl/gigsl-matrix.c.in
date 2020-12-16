@@ -28,10 +28,13 @@
 #include <string.h>
 
 static GslMatrix@GLIB_STRUCT_AFFIX@ *
-gsl_matrix@GSLAFFIX@_copy (const GslMatrix@GLIB_STRUCT_AFFIX@ *matrix)
+gsl_matrix@GSLAFFIX@_copy (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix)
 {
+  /* FIXME: this looks like a mayor bug in the gi-compiler */
+  matrix = *((gsl_matrix@GSLAFFIX@ **)matrix);
+
   GslMatrix@GLIB_STRUCT_AFFIX@ * result =
-    (GslMatrix@GLIB_STRUCT_AFFIX@ *) gsl_matrix@GSLAFFIX@_alloc_from_matrix((gsl_matrix@GSLAFFIX@ *) matrix, 0, 0, matrix->size1, matrix->size2);
+    gsl_matrix@GSLAFFIX@_alloc_from_matrix(matrix, 0, matrix->size1, 0, matrix->size2);
 
   return result;
 }

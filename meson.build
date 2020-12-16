@@ -5,9 +5,6 @@ project('gsl-gir', 'c',
   default_options : [ 'warning_level=3',
                       'buildtype=debugoptimized',
                       'c_std=gnu11',
-#                      'c_std=c89',
-#                      'c_std=c99',
-#                      'optimization=0'
                       ],
 )
 
