@@ -416,7 +416,7 @@ if introspection_available
     symbol_prefix: 'gsl',
     identifier_prefix: 'Gsl',
     link_with: libgigsl,
-    includes: ['Gio-2.0', 'Gtk-3.0'],
+    includes: ['Gio-2.0', ],
     install: true,
     include_directories: [root_inc, src_inc, build_inc],
     install_dir_gir: girdir,

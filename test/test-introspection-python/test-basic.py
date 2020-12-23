@@ -22,15 +22,15 @@ python3 ../test/test-introspection/test-basic.py
 
 class BasicTest(unittest.TestCase):
     def setUp(self):
-        gi.require_version ('Gtk', '3.0')
+#        gi.require_version ('Gtk', '3.0')
         gi.require_version ('LibGsl', '1.0')
 
     def testCalculation(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        from gi.repository import GObject, GLib, Gio, LibGsl
         print(dir(LibGsl))
 
     def testVector(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        from gi.repository import GObject, GLib, Gio, LibGsl
         Vector = LibGsl.vector_alloc(5)
         print(dir(Vector))
         Vector.set(4, 18.98)

@@ -5,17 +5,17 @@ import gi
 
 class BasicTest(unittest.TestCase):
     def setUp(self):
-        gi.require_version ('Gtk', '3.0')
+#        gi.require_version ('Gtk', '3.0')
         gi.require_version ('LibGsl', '1.0')
 
     def testBlockDoubleAlloc(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        from gi.repository import GObject, GLib, Gio, LibGsl
         Block = LibGsl.block_alloc(5)
         self.assertIsInstance(Block, gi.repository.LibGsl.Block)
         self.assertEqual(Block.size, 5)
 
     def testBlockDoubleCalloc(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        from gi.repository import GObject, GLib, Gio, LibGsl
         Block = LibGsl.block_calloc(5)
         self.assertIsInstance(Block, gi.repository.LibGsl.Block)
         self.assertEqual(Block.size, 5)

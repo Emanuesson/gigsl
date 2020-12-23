@@ -5,11 +5,11 @@ import gi
 
 class MatrixTest(unittest.TestCase):
     def setUp(self):
-        gi.require_version ('Gtk', '3.0')
+#        gi.require_version ('Gtk', '3.0')
         gi.require_version ('LibGsl', '1.0')
 
     def testMatrixDoubleAlloc(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        from gi.repository import GObject, GLib, Gio, LibGsl
         Matrix = LibGsl.matrix_calloc(5, 2)
         self.assertIsInstance(Matrix, gi.repository.LibGsl.Matrix)
         Matrix.set(1,1,GLib.MAXDOUBLE)
@@ -22,7 +22,7 @@ class MatrixTest(unittest.TestCase):
             self.assertEqual(Block.data[i], 0.0)
 
     def testMatrixDoubleCalloc(self):
-        from gi.repository import GObject, GLib, Gio, Gtk, LibGsl
+        from gi.repository import GObject, GLib, Gio, LibGsl
         Matrix = LibGsl.matrix_calloc(5, 2)
         Matrix.set(1,1,199141.89)
 
