@@ -1,11 +1,14 @@
+libgigsl_header_subdir = join_paths(package_subdir, 'gigsl')
+
 libgigsl_sources = [
+]
+
+libgigsl_headers = [
   'gigsl.h',
   'gigsl-block.h',
   'gigsl-vector.h',
   'gigsl-matrix.h',
-  ]
-
-libgigsl_sources = libgigsl_sources
+]
 
 gigsl_double_cdata = configuration_data()
 gigsl_double_cdata.set('CTYPE', 'double')
@@ -177,27 +180,30 @@ gigslblockchar_source = configure_file(input: 'gigsl-block.c.in',
                  output: 'gigsl-block-char.c',
                  configuration: gigsl_char_cdata)
 
-gen_block_files = [
-  gigslblockdouble_header,
+gen_block_sources = [
   gigslblockdouble_source,
-  gigslblockfloat_header,
   gigslblockfloat_source,
-  gigslblockulong_header,
   gigslblockulong_source,
-  gigslblocklong_header,
   gigslblocklong_source,
-  gigslblockuint_header,
   gigslblockuint_source,
-  gigslblockint_header,
   gigslblockint_source,
-  gigslblockushort_header,
   gigslblockushort_source,
-  gigslblockshort_header,
   gigslblockshort_source,
-  gigslblockuchar_header,
   gigslblockuchar_source,
-  gigslblockchar_header,
   gigslblockchar_source,
+]
+
+gen_block_headers = [
+  gigslblockdouble_header,
+  gigslblockfloat_header,
+  gigslblockulong_header,
+  gigslblocklong_header,
+  gigslblockuint_header,
+  gigslblockint_header,
+  gigslblockushort_header,
+  gigslblockshort_header,
+  gigslblockuchar_header,
+  gigslblockchar_header,
 ]
 
 gigslvectordouble_header = configure_file(input: 'gigsl-vector.h.in',
@@ -270,27 +276,30 @@ gigslvectorchar_source = configure_file(input: 'gigsl-vector.c.in',
                  output: 'gigsl-vector-char.c',
                  configuration: gigsl_char_cdata)
 
-gen_vector_files = [
-  gigslvectordouble_header,
+gen_vector_sources = [
   gigslvectordouble_source,
-  gigslvectorfloat_header,
   gigslvectorfloat_source,
-  gigslvectorulong_header,
   gigslvectorulong_source,
-  gigslvectorlong_header,
   gigslvectorlong_source,
-  gigslvectoruint_header,
   gigslvectoruint_source,
-  gigslvectorint_header,
   gigslvectorint_source,
-  gigslvectorushort_header,
   gigslvectorushort_source,
-  gigslvectorshort_header,
   gigslvectorshort_source,
-  gigslvectoruchar_header,
   gigslvectoruchar_source,
-  gigslvectorchar_header,
   gigslvectorchar_source,
+]
+
+gen_vector_headers = [
+  gigslvectordouble_header,
+  gigslvectorfloat_header,
+  gigslvectorulong_header,
+  gigslvectorlong_header,
+  gigslvectoruint_header,
+  gigslvectorint_header,
+  gigslvectorushort_header,
+  gigslvectorshort_header,
+  gigslvectoruchar_header,
+  gigslvectorchar_header,
 ]
 
 gigslmatrixdouble_header = configure_file(input: 'gigsl-matrix.h.in',
@@ -363,36 +372,49 @@ gigslmatrixchar_source = configure_file(input: 'gigsl-matrix.c.in',
                  output: 'gigsl-matrix-char.c',
                  configuration: gigsl_char_cdata)
 
-gen_matrix_files = [
-  gigslmatrixdouble_header,
+gen_matrix_sources = [
   gigslmatrixdouble_source,
-  gigslmatrixfloat_header,
   gigslmatrixfloat_source,
-  gigslmatrixulong_header,
   gigslmatrixulong_source,
-  gigslmatrixlong_header,
   gigslmatrixlong_source,
-  gigslmatrixuint_header,
   gigslmatrixuint_source,
-  gigslmatrixint_header,
   gigslmatrixint_source,
-  gigslmatrixushort_header,
   gigslmatrixushort_source,
-  gigslmatrixshort_header,
   gigslmatrixshort_source,
-  gigslmatrixuchar_header,
   gigslmatrixuchar_source,
-  gigslmatrixchar_header,
   gigslmatrixchar_source,
 ]
 
-gen_files = [
-  gen_block_files,
-  gen_vector_files,
-  gen_matrix_files,
+gen_matrix_headers = [
+  gigslmatrixdouble_header,
+  gigslmatrixfloat_header,
+  gigslmatrixulong_header,
+  gigslmatrixlong_header,
+  gigslmatrixuint_header,
+  gigslmatrixint_header,
+  gigslmatrixushort_header,
+  gigslmatrixshort_header,
+  gigslmatrixuchar_header,
+  gigslmatrixchar_header,
 ]
 
-libgigsl_sources += gen_files
+gen_sources = [
+  gen_block_sources,
+  gen_vector_sources,
+  gen_matrix_sources,
+]
+
+gen_headers = [
+  gen_block_headers,
+  gen_vector_headers,
+  gen_matrix_headers,
+]
+
+libgigsl_sources += gen_sources
+libgigsl_headers += gen_headers
+libgigsl_sources += libgigsl_headers
+
+install_headers(libgigsl_headers, subdir: libgigsl_header_subdir)
 
 libgigsl = library(
   'gigsl',
