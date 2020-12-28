@@ -453,3 +453,15 @@ if introspection_available
   )
 endif
 
+pkgg = import('pkgconfig')
+
+pkgg.generate(
+      subdirs: libgigsl_header_subdir,
+      version: meson.project_version(),
+         name: 'gigsl',
+     filebase: 'gigsl',
+  description: 'Glib wrapper for the gsl',
+     requires: ['gsl', 'gio-2.0', 'glib-2.0'],
+  install_dir: join_paths(libdir, 'pkgconfig'),
+)
+

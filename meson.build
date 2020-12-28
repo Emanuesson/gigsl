@@ -1,6 +1,6 @@
 project('gsl-gir', 'c',
   license : 'GPLv2+',
-  version : '0.1.0',
+  version : '0.2.0',
   meson_version : '>=0.55',
   default_options : [ 'warning_level=3',
                       'buildtype=debugoptimized',
@@ -27,22 +27,35 @@ python = pymod.find_installation(get_option('python'))
 prefix = get_option('prefix')
 includedir = join_paths(prefix, get_option('includedir'))
 package_subdir = get_option('package_subdir') # When used as subproject
-libdir = join_paths(get_option('libdir'), package_subdir)
+libdir = join_paths(get_option('libdir'))
 girdir = join_paths(get_option('datadir'), 'gir-1.0')
 typelibdir = join_paths(get_option('libdir'), 'girepository-1.0')
-
-version_arr = meson.project_version().split('.')
-libggsl_version_major = version_arr[0].to_int()
-libggsl_version_minor = version_arr[1].to_int()
-libggsl_version_micro = version_arr[2].to_int()
 
 root_inc = include_directories('.')
 src_inc = include_directories('gigsl')
 top_build_dir = meson.current_build_dir()
 build_inc = include_directories('./build')
 
-apiversion = '1.0'
+version_arr = meson.project_version().split('.')
+gigsl_version_major = version_arr[0].to_int()
+gigsl_version_minor = version_arr[1].to_int()
+gigsl_version_micro = version_arr[2].to_int()
+
+apiversion = '0.2'
 soversion = 0
+
+if gigsl_version_minor.is_odd()
+  gigsl_interface_age = 0
+else
+  gigsl_interface_age = gigsl_version_micro
+endif
+
+current = gigsl_version_minor * 100 + gigsl_version_micro - gigsl_interface_age
+revision = gigsl_interface_age
+libversion = '@0@.@1@.@2@'.format(soversion, current, revision)
+pkgvapidir = join_paths(get_option('datadir'), 'gnome-builder/vapi')
+
+# TODO: create a meaningful config header
 
 subdir('gigsl')
 
