@@ -440,7 +440,7 @@ if introspection_available
     link_with: libgigsl,
     includes: ['Gio-2.0', ],
     install: true,
-    include_directories: [root_inc, src_inc, build_inc],
+    include_directories: [root_inc, src_inc ],
     install_dir_gir: girdir,
     install_dir_typelib: typelibdir,
     header: 'gigsl/ggsl.h',

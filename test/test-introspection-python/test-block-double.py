@@ -6,7 +6,7 @@ import gi
 class BasicTest(unittest.TestCase):
     def setUp(self):
 #        gi.require_version ('Gtk', '3.0')
-        gi.require_version ('LibGsl', '1.0')
+        gi.require_version ('LibGsl', '0.2')
 
     def testBlockDoubleAlloc(self):
         from gi.repository import GObject, GLib, Gio, LibGsl

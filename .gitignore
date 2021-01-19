@@ -53,3 +53,5 @@ dkms.conf
 
 # A typical build directory
 build/*
+_build/*
+

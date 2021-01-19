@@ -35,7 +35,7 @@ test_introspection_basic (void)
       g_error ("ERROR: %s\n", error->message);
       return;
     }
-  g_irepository_require (repository, "LibGsl", "1.0", 0, &error);
+  g_irepository_require (repository, "LibGsl", "0.2", 0, &error);
   if (error)
     {
       g_error ("ERROR: %s\n", error->message);

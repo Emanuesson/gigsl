@@ -34,7 +34,6 @@ typelibdir = join_paths(get_option('libdir'), 'girepository-1.0')
 root_inc = include_directories('.')
 src_inc = include_directories('gigsl')
 top_build_dir = meson.current_build_dir()
-build_inc = include_directories('./build')
 
 version_arr = meson.project_version().split('.')
 gigsl_version_major = version_arr[0].to_int()
