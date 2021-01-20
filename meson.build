@@ -1,6 +1,6 @@
 project('gsl-gir', 'c',
   license : 'GPLv2+',
-  version : '0.2.0',
+  version : '0.2.3',
   meson_version : '>=0.55',
   default_options : [ 'warning_level=3',
                       'buildtype=debugoptimized',
@@ -11,7 +11,7 @@ project('gsl-gir', 'c',
 cc = meson.get_compiler('c')
 
 gnome = import('gnome')
-pkg = import('pkgconfig')
+pkgg = import('pkgconfig')
 
 gsl = dependency('gsl', version : '>= 2.0')
 gobject = dependency('gobject-2.0', version : '>= 2.38.0')

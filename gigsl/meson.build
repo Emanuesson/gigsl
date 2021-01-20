@@ -453,8 +453,6 @@ if introspection_available
   )
 endif
 
-pkgg = import('pkgconfig')
-
 pkgg.generate(
       subdirs: libgigsl_header_subdir,
       version: meson.project_version(),
