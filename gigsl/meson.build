@@ -426,6 +426,7 @@ libgigsl = library(
 
 libgigsl_dep = declare_dependency(
     link_with : libgigsl,
+  include_directories : [gigslinc],
     dependencies : [gobject, gsl ],
 )
 
@@ -440,7 +441,7 @@ if introspection_available
     link_with: libgigsl,
     includes: ['Gio-2.0', ],
     install: true,
-    include_directories: [root_inc, src_inc ],
+    include_directories: [root_inc, gigslinc ],
     install_dir_gir: girdir,
     install_dir_typelib: typelibdir,
     header: 'gigsl/ggsl.h',
