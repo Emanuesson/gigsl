@@ -422,12 +422,14 @@ libgigsl = library(
   pic: true,
   dependencies : [ gobject, gsl, gio ],
   install : true,
+  implicit_include_directories: true,
+  include_directories: [ gigsl_root_inc ],
 )
 
 libgigsl_dep = declare_dependency(
-    link_with : libgigsl,
-  include_directories : [gigslinc],
-    dependencies : [gobject, gsl ],
+  link_with : libgigsl,
+  include_directories : [ gigsl_root_inc ],
+  dependencies : [gobject, gsl ],
 )
 
 # TODO: remove "GIR_SCANNER" for installed headers
@@ -441,7 +443,7 @@ if introspection_available
     link_with: libgigsl,
     includes: ['Gio-2.0', ],
     install: true,
-    include_directories: [root_inc, gigslinc ],
+    include_directories: [ gigsl_root_inc, gigsl_src_inc ],
     install_dir_gir: girdir,
     install_dir_typelib: typelibdir,
     header: 'gigsl/ggsl.h',

@@ -1,6 +1,6 @@
 project('gsl-gir', 'c',
   license : 'GPLv2+',
-  version : '0.2.4',
+  version : '0.2.5',
   meson_version : '>=0.55',
   default_options : [ 'warning_level=3',
                       'buildtype=debugoptimized',
@@ -31,9 +31,9 @@ libdir = join_paths(get_option('libdir'))
 girdir = join_paths(get_option('datadir'), 'gir-1.0')
 typelibdir = join_paths(get_option('libdir'), 'girepository-1.0')
 
-root_inc = include_directories('.')
-gigslinc = include_directories('gigsl')
-top_build_dir = meson.current_build_dir()
+gigsl_root_inc = include_directories('.')
+gigsl_src_inc = include_directories('gigsl')
+gigsl_top_build_dir = meson.current_build_dir()
 
 version_arr = meson.project_version().split('.')
 gigsl_version_major = version_arr[0].to_int()

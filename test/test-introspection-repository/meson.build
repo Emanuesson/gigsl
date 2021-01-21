@@ -13,7 +13,7 @@ foreach t: gigsl_tests
   test_srcs = ['@0@.c'.format(test_name), t.get(1, [])]
   test(test_name,
     executable(test_name, test_srcs,
-    include_directories: [ root_inc ],
+    include_directories: [ gigsl_root_inc ],
     c_args: ggsl_test_cflags,
     dependencies: ggsl_test_deps + [girepository_dep]),
   env: introsp_test_env,

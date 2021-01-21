@@ -25,7 +25,7 @@
 
 #include <glib.h>
 #include <gio/gio.h>
-#include <gigsl-block-@ABBR_CTYPE@.h>
+#include <gigsl/gigsl-block-@ABBR_CTYPE@.h>
 #include <gsl/gsl_vector_@ABBR_CTYPE@.h>
 
 G_BEGIN_DECLS

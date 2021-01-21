@@ -24,7 +24,7 @@
   #include <config.h>
 #endif
 
-#include "gigsl-vector-@ABBR_CTYPE@.h"
+#include <gigsl/gigsl-vector-@ABBR_CTYPE@.h>
 #include <string.h>
 
 static GslVector@GLIB_STRUCT_AFFIX@ *
