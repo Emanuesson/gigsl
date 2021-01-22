@@ -27,6 +27,7 @@ test_introspection_basic (void)
   GIBaseInfo *base_info;
   GIArgument in_args[5];
   GIArgument retval;
+  GslMatrix * matrix;
 
   repository = g_irepository_get_default ();
   g_irepository_require (repository, "GLib", "2.0", 0, &error);
@@ -66,7 +67,7 @@ test_introspection_basic (void)
       return;
     }
 
-  GslMatrix * matrix = (GslMatrix *)retval.v_pointer;
+  matrix = (GslMatrix *)retval.v_pointer;
   g_assert_cmpuint(matrix->size1, ==, 5);
   g_assert_cmpuint(matrix->size2, ==, 2);
   g_assert_cmpuint(matrix->block->size, ==, 10);

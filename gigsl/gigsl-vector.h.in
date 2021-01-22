@@ -64,20 +64,26 @@ typedef gsl_vector@GSLAFFIX@ GslVector@GLIB_STRUCT_AFFIX@;
  * @n: (type gsize):
  * Returns: (nullable) (transfer full) (type GslVector@GLIB_STRUCT_AFFIX@):
  */
+#ifdef GIR_SCANNER
 gsl_vector@GSLAFFIX@ *gsl_vector@GSLAFFIX@_alloc (const size_t n);
+#endif
 
 /**
  * gsl_vector@GSLAFFIX@_calloc:
  * @n: (type gsize):
  * Returns: (nullable) (transfer full) (type GslVector@GLIB_STRUCT_AFFIX@):
  */
+#ifdef GIR_SCANNER
 gsl_vector@GSLAFFIX@ *gsl_vector@GSLAFFIX@_calloc (const size_t n);
+#endif
 
 /**
  * gsl_vector@GSLAFFIX@_free:
  * @v: (not nullable) (type GslVector@GLIB_STRUCT_AFFIX@):
  */
+#ifdef GIR_SCANNER
 void gsl_vector@GSLAFFIX@_free (gsl_vector@GSLAFFIX@ * v);
+#endif
 
 /**
  * gsl_vector@GSLAFFIX@_get:
@@ -85,7 +91,9 @@ void gsl_vector@GSLAFFIX@_free (gsl_vector@GSLAFFIX@ * v);
  * @i: (type gsize):
  * Returns:
  */
+#ifdef GIR_SCANNER
 INLINE_DECL @CTYPE@ gsl_vector@GSLAFFIX@_get (const gsl_vector@GSLAFFIX@ * v, const size_t i);
+#endif
 
 /**
  * gsl_vector@GSLAFFIX@_set:
@@ -93,7 +101,9 @@ INLINE_DECL @CTYPE@ gsl_vector@GSLAFFIX@_get (const gsl_vector@GSLAFFIX@ * v, co
  * @i: (type gsize):
  * @x:
  */
+#ifdef GIR_SCANNER
 INLINE_DECL void gsl_vector@GSLAFFIX@_set (gsl_vector@GSLAFFIX@ * v, const size_t i, @CTYPE@ x);
+#endif
 
 GType gsl_vector@GSLAFFIX@_get_type (void) G_GNUC_CONST;
 

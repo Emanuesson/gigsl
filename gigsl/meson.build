@@ -433,6 +433,8 @@ libgigsl_dep = declare_dependency(
 )
 
 # TODO: remove "GIR_SCANNER" for installed headers
+# FIXME: check if 'GIR_SCANNER' is required then in projects that depend on
+#        the lib-gigsl
 if introspection_available
   libgigsl_gir = gnome.generate_gir(libgigsl,
     sources: libgigsl_sources,

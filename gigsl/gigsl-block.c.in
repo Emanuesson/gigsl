@@ -30,10 +30,12 @@
 static GslBlock@GLIB_STRUCT_AFFIX@ *
 gsl_block@GSLAFFIX@_copy (const GslBlock@GLIB_STRUCT_AFFIX@ *block)
 {
+  GslBlock@GLIB_STRUCT_AFFIX@ * result;
+
   /* FIXME: this looks like a mayor bug in the gi-compiler */
   block = *((gsl_block@GSLAFFIX@ **)block);
 
-  GslBlock@GLIB_STRUCT_AFFIX@ * result = gsl_block@GSLAFFIX@_calloc(block->size);
+  result = gsl_block@GSLAFFIX@_calloc(block->size);
   memcpy(result->data, block->data, block->size);
 
   return result;

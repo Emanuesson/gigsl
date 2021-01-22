@@ -8,7 +8,51 @@ project('gsl-gir', 'c',
                       ],
 )
 
+#add_global_arguments(['-D_Float128=double',
+#                      '-fno-omit-frame-pointer',
+#                      '-fno-common',
+#                      ],
+#                     language: 'c')
+
+global_c_args = []
+gigsl_test_c_args = [
+  '-Wcast-align',
+  '-Wdeclaration-after-statement',
+  ['-Werror=format-security', '-Werror=format=2'],
+  '-Wformat-nonliteral',
+  '-Wformat-security',
+  '-Wmissing-include-dirs',
+  '-Wnested-externs',
+  '-Wno-missing-field-initializers',
+  '-Wno-sign-compare',
+  '-Wno-strict-aliasing',
+  '-Wno-uninitialized',
+  '-Wno-unused-parameter',
+  '-Wpointer-arith',
+  '-Wredundant-decls',
+  '-Wshadow',
+  '-Wswitch-default',
+  '-Wswitch-enum',
+  '-Wundef',
+]
+if get_option('buildtype') != 'plain'
+  gigsl_test_c_args += '-fstack-protector-strong'
+endif
+if get_option('enable_profiling')
+  gigsl_test_c_args += '-pg'
+endif
+
 cc = meson.get_compiler('c')
+
+foreach arg: gigsl_test_c_args
+  if cc.has_multi_arguments(arg)
+    global_c_args += arg
+  endif
+endforeach
+add_project_arguments(
+  global_c_args,
+  language: 'c'
+)
 
 gnome = import('gnome')
 pkgg = import('pkgconfig')

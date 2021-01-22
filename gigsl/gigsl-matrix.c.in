@@ -30,10 +30,12 @@
 static GslMatrix@GLIB_STRUCT_AFFIX@ *
 gsl_matrix@GSLAFFIX@_copy (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix)
 {
+  GslMatrix@GLIB_STRUCT_AFFIX@ * result;
+
   /* FIXME: this looks like a mayor bug in the gi-compiler */
   matrix = *((gsl_matrix@GSLAFFIX@ **)matrix);
 
-  GslMatrix@GLIB_STRUCT_AFFIX@ * result =
+  result =
     gsl_matrix@GSLAFFIX@_alloc_from_matrix(matrix, 0, matrix->size1, 0, matrix->size2);
 
   return result;

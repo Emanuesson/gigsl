@@ -57,7 +57,9 @@ typedef gsl_block@GSLAFFIX@ GslBlock@GLIB_STRUCT_AFFIX@;
  *
  * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
+#ifdef GIR_SCANNER
 gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
+#endif
 
 /**
  * gsl_block@GSLAFFIX@_calloc:
@@ -65,13 +67,17 @@ gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
  *
  * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
+#ifdef GIR_SCANNER
 gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_calloc (const size_t n);
+#endif
 
 /**
  * gsl_block@GSLAFFIX@_free:
  * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
+#ifdef GIR_SCANNER
 void gsl_block@GSLAFFIX@_free (gsl_block@GSLAFFIX@ * b);
+#endif
 
 /* TODO: Currently, all functions that contain a FILE-descriptor either as
  *       return value or as parameter cannot easily be used together with
