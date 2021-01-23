@@ -49,3 +49,117 @@ G_DEFINE_BOXED_TYPE (GslMatrix@GLIB_STRUCT_AFFIX@,
                      (void (*)(GslMatrix@GLIB_STRUCT_AFFIX@ *)) gsl_matrix@GSLAFFIX@_free);
 #pragma GCC diagnostic pop
 
+GslMatrix@GLIB_STRUCT_AFFIX@ * gsl_matrix@GSLAFFIX@_set_and_expand (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
+                                        gsize i, gsize j,
+                                        @CTYPE@ x)
+{
+  if (i >= matrix->size1)
+    gsl_matrix@GSLAFFIX@_set_rows (matrix, i + 1);
+
+  if (j >= matrix->size2)
+    gsl_matrix@GSLAFFIX@_set_cols (matrix, j + 1);
+
+  gsl_matrix@GSLAFFIX@_set(matrix, i, j, x);
+
+  /* TODO */
+  return matrix;
+}
+
+void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gsize rows)
+{
+  GslMatrix@GLIB_STRUCT_AFFIX@ tmp_matrix = *matrix;
+  GslMatrix@GLIB_STRUCT_AFFIX@ * new_matrix = gsl_matrix@GSLAFFIX@_calloc(rows, matrix->size2);
+
+  if (new_matrix == NULL)
+    return;
+
+  for (gsize i = 0; i < rows && i < matrix->size1; i++)
+  {
+    for (gsize j = 0; j < matrix->size2; j++)
+    {
+      @CTYPE@ value = gsl_matrix@GSLAFFIX@_get(matrix, i, j);
+      gsl_matrix@GSLAFFIX@_set(new_matrix, i, j, value);
+    }
+  }
+
+  *matrix = *new_matrix;
+  *new_matrix = tmp_matrix;
+  gsl_matrix@GSLAFFIX@_free(new_matrix);
+}
+
+void gsl_matrix@GSLAFFIX@_set_cols (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
+                                    gsize columns)
+{
+  GslMatrix@GLIB_STRUCT_AFFIX@ tmp_matrix = *matrix;
+  GslMatrix@GLIB_STRUCT_AFFIX@ * new_matrix = gsl_matrix@GSLAFFIX@_calloc(matrix->size1, columns);
+
+  if (new_matrix == NULL)
+    return;
+
+  for (gsize i = 0; i < matrix->size1; i++)
+  {
+    for (gsize j = 0; j < columns && j < matrix->size2; j++)
+    {
+      @CTYPE@ value = gsl_matrix@GSLAFFIX@_get(matrix, i, j);
+      gsl_matrix@GSLAFFIX@_set(new_matrix, i, j, value);
+    }
+  }
+
+  *matrix = *new_matrix;
+  *new_matrix = tmp_matrix;
+  gsl_matrix@GSLAFFIX@_free(new_matrix);
+}
+
+/*
+void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gsize rows)
+{
+  gsize real_new_size = matrix->size2 * rows * sizeof (@CTYPE@); //  * MULTIPLICITY
+
+  matrix->block->data = realloc(matrix->block, real_new_size);
+  matrix->data = matrix->block->data;
+  matrix->size1 = rows;
+}
+
+void gsl_matrix@GSLAFFIX@_set_cols (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
+                                    gsize columns)
+{
+  GslMatrix@GLIB_STRUCT_AFFIX@ tmp_matrix = *matrix;
+  gsize delta = matrix->size2 > columns ? matrix->size2 - columns : 0;
+  gsize real_new_size = matrix->size1 * columns * sizeof (@CTYPE@); //  * MULTIPLICITY
+
+  if (matrix->size2 == columns)
+    return;
+  else if (matrix->size2 < columns)
+  {
+    matrix->block->data = realloc(matrix->block, real_new_size);
+    matrix->data = matrix->block->data;
+  }
+
+  if (matrix->block == NULL)
+    return;
+
+  matrix->size2 = columns;
+  matrix->tda = columns;
+
+  for (gsize j = 1; j <= tmp_matrix.size2 && j < matrix->size2; j++)
+  {
+    for (gsize i = 1; i <= tmp_matrix.size1; i++)
+    {
+      @CTYPE@ value = gsl_matrix@GSLAFFIX@_get(&tmp_matrix,
+                                               tmp_matrix.size1 - i,
+                                               tmp_matrix.size2 - j - delta);
+      gsl_matrix@GSLAFFIX@_set(matrix,
+                               matrix->size1 - i,
+                               matrix->size2 - j,
+                               value);
+    }
+  }
+
+  if (matrix->size2 > columns)
+  {
+    matrix->block->data = realloc(matrix->block, real_new_size);
+    matrix->data = matrix->block->data;
+  }
+}
+*/
+

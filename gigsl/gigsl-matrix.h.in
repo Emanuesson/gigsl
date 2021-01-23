@@ -181,6 +181,51 @@ INLINE_DECL @CTYPE@
 gsl_matrix@GSLAFFIX@_get(const gsl_matrix@GSLAFFIX@ * m, const size_t i, const size_t j);
 #endif
 
+/* The following functions are part of the gigsl only and appeared to be usefull. */
+/**
+ * gsl_matrix@GSLAFFIX@_set_and_expand:
+ * @matrix: (type GslMatrix@GLIB_STRUCT_AFFIX@*): a #GslMatrix@GLIB_STRUCT_AFFIX@
+ * @i: the index of the column
+ * @j: the index of the row
+ * @x: the value that will be set
+ *
+ * Sets the value @x and potentially expands the given matrix.
+ *
+ * This function is imperformant and should only used sparely.
+ *
+ * Returns: (nullable) (transfer none): The @matrix, as it may be usefull.
+ */
+GslMatrix@GLIB_STRUCT_AFFIX@ * gsl_matrix@GSLAFFIX@_set_and_expand (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
+                                        gsize i, gsize j,
+                                        @CTYPE@ x);
+
+/**
+ * gsl_matrix@GSLAFFIX@_set_rows:
+ * @matrix: (type GslMatrix@GLIB_STRUCT_AFFIX@*): a #GslMatrix@GLIB_STRUCT_AFFIX@
+ * @rows: the index of the row
+ *
+ * Sets the row of the given matrix. This will either expand or shrink the
+ * matrix if @matrix->size1 != @rows.
+ * If the matrix is expanded, the newly created rows are calloced.
+ *
+ * This function is imperformant and should only used sparely.
+ */
+void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gsize rows);
+
+/**
+ * gsl_matrix@GSLAFFIX@_set_cols:
+ * @matrix: (type GslMatrix@GLIB_STRUCT_AFFIX@*): a #GslMatrix@GLIB_STRUCT_AFFIX@
+ * @columns: the index of the column
+ *
+ * Sets the row of the given matrix. This will either expand or shrink the
+ * matrix if @matrix->size2 != @columns.
+ * If the matrix is expanded, the newly created columns are calloced.
+ *
+ * This function is imperformant and should only used sparely.
+ */
+void gsl_matrix@GSLAFFIX@_set_cols (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
+                                    gsize columns);
+
 GType gsl_matrix@GSLAFFIX@_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
