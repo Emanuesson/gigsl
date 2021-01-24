@@ -446,7 +446,7 @@ if introspection_available
     includes: ['Gio-2.0', ],
     install: true,
     include_directories: [ gigsl_root_inc, gigsl_src_inc ],
-    install_dir_gir: girdir,
+    install_dir_gir: gigsl_girdir,
     install_dir_typelib: typelibdir,
     header: 'gigsl/ggsl.h',
     fatal_warnings: true,
