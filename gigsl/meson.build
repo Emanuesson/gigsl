@@ -429,7 +429,7 @@ libgigsl = library(
 libgigsl_dep = declare_dependency(
   link_with : libgigsl,
   include_directories : [ gigsl_root_inc ],
-  dependencies : [gobject, gsl ],
+  dependencies : [gobject, gsl, gio ],
 )
 
 # TODO: remove "GIR_SCANNER" for installed headers
