@@ -32,11 +32,9 @@ gsl_matrix@GSLAFFIX@_copy (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix)
 {
   GslMatrix@GLIB_STRUCT_AFFIX@ * result;
 
-  /* FIXME: this looks like a mayor bug in the gi-compiler */
-  matrix = *((gsl_matrix@GSLAFFIX@ **)matrix);
-
   result =
-    gsl_matrix@GSLAFFIX@_alloc_from_matrix(matrix, 0, matrix->size1, 0, matrix->size2);
+    gsl_matrix@GSLAFFIX@_alloc(matrix->size1, matrix->size2);
+  gsl_matrix@GSLAFFIX@_memcpy(result, matrix);
 
   return result;
 }
@@ -50,14 +48,23 @@ G_DEFINE_BOXED_TYPE (GslMatrix@GLIB_STRUCT_AFFIX@,
 #pragma GCC diagnostic pop
 
 GslMatrix@GLIB_STRUCT_AFFIX@ * gsl_matrix@GSLAFFIX@_set_and_expand (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
-                                        gsize i, gsize j,
+                                        gssize i, gssize j,
                                         @CTYPE@ x)
 {
-  if (i >= matrix->size1)
+  if (i < 0)
+    gsl_matrix@GSLAFFIX@_set_cols (matrix, j);
+  else if ((gsize) i >= matrix->size1)
     gsl_matrix@GSLAFFIX@_set_rows (matrix, i + 1);
 
-  if (j >= matrix->size2)
+  if (j < 0)
+    gsl_matrix@GSLAFFIX@_set_cols (matrix, j);
+  else if ((gsize) j >= matrix->size2)
     gsl_matrix@GSLAFFIX@_set_cols (matrix, j + 1);
+
+  if (i < 0)
+    i = 0;
+  if (j < 0)
+    j = 0;
 
   gsl_matrix@GSLAFFIX@_set(matrix, i, j, x);
 
@@ -65,15 +72,24 @@ GslMatrix@GLIB_STRUCT_AFFIX@ * gsl_matrix@GSLAFFIX@_set_and_expand (GslMatrix@GL
   return matrix;
 }
 
-void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gsize rows)
+void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gssize rows)
 {
-  GslMatrix@GLIB_STRUCT_AFFIX@ tmp_matrix = *matrix;
-  GslMatrix@GLIB_STRUCT_AFFIX@ * new_matrix = gsl_matrix@GSLAFFIX@_calloc(rows, matrix->size2);
+  GslMatrix@GLIB_STRUCT_AFFIX@ tmp_matrix;
+  GslMatrix@GLIB_STRUCT_AFFIX@ * new_matrix;
+
+  if (rows > 0 && matrix->size1 == (gsize) rows)
+    return;
+
+  tmp_matrix = *matrix;
+  new_matrix = gsl_matrix@GSLAFFIX@_calloc(rows, matrix->size2);
+
+  /* TODO: Implement this case! */
+  g_return_if_fail(rows > 0);
 
   if (new_matrix == NULL)
     return;
 
-  for (gsize i = 0; i < rows && i < matrix->size1; i++)
+  for (gsize i = 0; i < (gsize) rows && i < matrix->size1; i++)
   {
     for (gsize j = 0; j < matrix->size2; j++)
     {
@@ -88,17 +104,26 @@ void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gsize 
 }
 
 void gsl_matrix@GSLAFFIX@_set_cols (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
-                                    gsize columns)
+                                    gssize columns)
 {
-  GslMatrix@GLIB_STRUCT_AFFIX@ tmp_matrix = *matrix;
-  GslMatrix@GLIB_STRUCT_AFFIX@ * new_matrix = gsl_matrix@GSLAFFIX@_calloc(matrix->size1, columns);
+  GslMatrix@GLIB_STRUCT_AFFIX@ tmp_matrix;
+  GslMatrix@GLIB_STRUCT_AFFIX@ * new_matrix;
+
+  if (columns > 0 && matrix->size2 == (gsize) columns)
+    return;
+
+  tmp_matrix = *matrix;
+  new_matrix = gsl_matrix@GSLAFFIX@_calloc(matrix->size1, columns);
+
+  /* TODO: Implement this case! */
+  g_return_if_fail(columns > 0);
 
   if (new_matrix == NULL)
     return;
 
   for (gsize i = 0; i < matrix->size1; i++)
   {
-    for (gsize j = 0; j < columns && j < matrix->size2; j++)
+    for (gsize j = 0; j < (gsize) columns && j < matrix->size2; j++)
     {
       @CTYPE@ value = gsl_matrix@GSLAFFIX@_get(matrix, i, j);
       gsl_matrix@GSLAFFIX@_set(new_matrix, i, j, value);

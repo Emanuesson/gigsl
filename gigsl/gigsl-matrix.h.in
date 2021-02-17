@@ -191,12 +191,23 @@ gsl_matrix@GSLAFFIX@_get(const gsl_matrix@GSLAFFIX@ * m, const size_t i, const s
  *
  * Sets the value @x and potentially expands the given matrix.
  *
- * This function is imperformant and should only used sparely.
+ * FIXME: The described behaviour is not yet fully supported!
+ * Sets or expands the matrix. If the indizes are out of range of the matrix-size, a new matrix will
+ * be allocated and stored in the return pointer. If one of the indizes is negativ, the matrix will
+ * be shifted by the negative value and the value at index zero will be set for the new value. All
+ * newly generated values are in general set to zero.
+ * If both indizes are within the range of the matrix, the value at the index will be set to the new
+ * value and the function will return the old matrix.
+ *
+ * Annotation: Caused by limited development-capacity, we use the GslMatrix as underlying structure.
+ *             As there is so far no reallocation function for the GslMatrix availabe, this function
+ *             might be ineffective for the performance in some corner cases. Avoid usage as much as
+ *             possible.
  *
  * Returns: (nullable) (transfer none): The @matrix, as it may be usefull.
  */
 GslMatrix@GLIB_STRUCT_AFFIX@ * gsl_matrix@GSLAFFIX@_set_and_expand (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
-                                        gsize i, gsize j,
+                                        gssize i, gssize j,
                                         @CTYPE@ x);
 
 /**
@@ -210,7 +221,7 @@ GslMatrix@GLIB_STRUCT_AFFIX@ * gsl_matrix@GSLAFFIX@_set_and_expand (GslMatrix@GL
  *
  * This function is imperformant and should only used sparely.
  */
-void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gsize rows);
+void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gssize rows);
 
 /**
  * gsl_matrix@GSLAFFIX@_set_cols:
@@ -224,7 +235,34 @@ void gsl_matrix@GSLAFFIX@_set_rows (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix, gsize 
  * This function is imperformant and should only used sparely.
  */
 void gsl_matrix@GSLAFFIX@_set_cols (GslMatrix@GLIB_STRUCT_AFFIX@ *matrix,
-                                    gsize columns);
+                                    gssize columns);
+
+//EpsaraDataMatrix *epsara_data_matrix_memcpy_submatrix (
+//  EpsaraDataMatrix *a,
+//  gint min_row, gint max_row,
+//  gint min_col, gint max_col);
+
+//void
+//epsara_data_matrix_save_to_file (EpsaraDataMatrix* matrix,
+//                                 GFile* file);
+
+//void epsara_data_matrix_sort_along_column (
+//  EpsaraDataMatrix *matrix,
+//  gint column);
+
+//gdouble epsara_data_matrix_integrate_column (
+//  EpsaraDataMatrix *matrix,
+//  gint peek_column,
+//  gint integrate_column,
+//  gboolean sort_matrix,
+//  gdouble start_value, gdouble end_value);
+
+//gdouble epsara_data_matrix_get_mean_column_value_near_row (
+//  EpsaraDataMatrix *matrix,
+//  gint peek_column,
+//  gint return_column,
+//  gint *nearest_row,
+//  gdouble peek_value);
 
 GType gsl_matrix@GSLAFFIX@_get_type (void) G_GNUC_CONST;
 

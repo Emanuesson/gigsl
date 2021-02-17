@@ -18,3 +18,7 @@ with a Glib-based infrastructure.
   * statistics
   * complex'
 
+# Specific TODOs - requested by epsara:
+gsl_matrix_copy
+gsl_matrix_scale
+

@@ -30,13 +30,13 @@
 static GslVector@GLIB_STRUCT_AFFIX@ *
 gsl_vector@GSLAFFIX@_copy (const GslVector@GLIB_STRUCT_AFFIX@ *vector)
 {
-  /* FIXME: this looks like a mayor bug in the gi-compiler */
-  vector = *((gsl_vector@GSLAFFIX@ **)vector);
+  GslVector@GLIB_STRUCT_AFFIX@ * result;
 
-  return (GslVector@GLIB_STRUCT_AFFIX@ *)gsl_vector@GSLAFFIX@_alloc_from_vector((gsl_vector@GSLAFFIX@ *) vector,
-                                                   0,
-                                                   vector->size,
-                                                   vector->stride);
+  result =
+    gsl_vector@GSLAFFIX@_alloc(vector->size);
+  gsl_vector@GSLAFFIX@_memcpy(result, vector);
+
+  return result;
 }
 
 #pragma GCC diagnostic push
