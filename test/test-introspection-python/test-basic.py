@@ -36,5 +36,7 @@ class BasicTest(unittest.TestCase):
         Vector.set(4, 18.98)
         self.assertEqual(Vector.get(4), 18.98)
 
+#    def testEnums(self):
+
 if __name__ == '__main__':
     unittest.main()

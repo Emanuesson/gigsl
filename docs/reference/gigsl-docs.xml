@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+<!ENTITY version SYSTEM "version.xml">
+<!ENTITY pi "&#960;">
+<!ENTITY solidus "&#8260;">
+]>
+<book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
+  <bookinfo>
+    <title>gigsl Reference Manual</title>
+    <releaseinfo>
+      This document is for the gigsl library, version &version;.
+<!--      The latest versions can be found online at
+      <ulink role="online-location" url="https://developer.gnome.org/gtk4/">https://developer.gnome.org/gtk4/</ulink>.
+      If you are looking for the older GTK 3 series of libraries,
+      see <ulink role="online-location" url="https://developer.gnome.org/gtk3/">https://developer.gnome.org/gtk3/</ulink>.
+-->
+    </releaseinfo>
+  </bookinfo>
+
+<!--
+  <part id="gtk">
+    <title>GTK Overview</title>
+    <xi:include href="overview.xml"/>
+  </part>
+-->
+
+  <part id="gsltypes">
+    <title>GSL types and functions</title>
+
+    <chapter>
+      <title>Mathematical functions</title>
+      <xi:include href="xml/gigsl-sys.xml" />
+    </chapter>
+
+    <chapter>
+      <title>Block</title>
+      <xi:include href="xml/gigsl-block-double.xml" />
+      <xi:include href="xml/gigsl-block-float.xml" />
+      <xi:include href="xml/gigsl-block-int.xml" />
+      <xi:include href="xml/gigsl-block-uint.xml" />
+      <xi:include href="xml/gigsl-block-long.xml" />
+      <xi:include href="xml/gigsl-block-ulong.xml" />
+      <xi:include href="xml/gigsl-block-short.xml" />
+      <xi:include href="xml/gigsl-block-ushort.xml" />
+      <xi:include href="xml/gigsl-block-char.xml" />
+      <xi:include href="xml/gigsl-block-uchar.xml" />
+    </chapter>
+
+    <chapter>
+      <title>Vector</title>
+      <xi:include href="xml/gigsl-vector-double.xml" />
+      <xi:include href="xml/gigsl-vector-float.xml" />
+      <xi:include href="xml/gigsl-vector-int.xml" />
+      <xi:include href="xml/gigsl-vector-uint.xml" />
+      <xi:include href="xml/gigsl-vector-long.xml" />
+      <xi:include href="xml/gigsl-vector-ulong.xml" />
+      <xi:include href="xml/gigsl-vector-short.xml" />
+      <xi:include href="xml/gigsl-vector-ushort.xml" />
+      <xi:include href="xml/gigsl-vector-char.xml" />
+      <xi:include href="xml/gigsl-vector-uchar.xml" />
+    </chapter>
+
+    <chapter>
+      <title>Matrix</title>
+      <xi:include href="xml/gigsl-matrix-double.xml" />
+      <xi:include href="xml/gigsl-matrix-float.xml" />
+      <xi:include href="xml/gigsl-matrix-int.xml" />
+      <xi:include href="xml/gigsl-matrix-uint.xml" />
+      <xi:include href="xml/gigsl-matrix-long.xml" />
+      <xi:include href="xml/gigsl-matrix-ulong.xml" />
+      <xi:include href="xml/gigsl-matrix-short.xml" />
+      <xi:include href="xml/gigsl-matrix-ushort.xml" />
+      <xi:include href="xml/gigsl-matrix-char.xml" />
+      <xi:include href="xml/gigsl-matrix-uchar.xml" />
+    </chapter>
+  </part>
+
+<!--
+  <xi:include href="glossary.xml" />
+
+  <index id="api-index-full">
+    <title>Index of all symbols</title>
+    <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
+  </index>
+  <index id="api-index-deprecated" role="deprecated">
+    <title>Index of deprecated symbols</title>
+    <xi:include href="xml/api-index-deprecated.xml"><xi:fallback /></xi:include>
+  </index>
+
+  <xi:include href="xml/annotation-glossary.xml"><xi:fallback /></xi:include>
+-->
+</book>
+

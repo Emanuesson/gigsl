@@ -5,6 +5,7 @@ libgigsl_sources = [
 
 libgigsl_headers = [
   'gigsl.h',
+  'gigsl-sys.h',
   'gigsl-block.h',
   'gigsl-vector.h',
   'gigsl-matrix.h',

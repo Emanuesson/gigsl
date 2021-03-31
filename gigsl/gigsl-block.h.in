@@ -53,7 +53,7 @@ typedef gsl_block@GSLAFFIX@ GslBlock@GLIB_STRUCT_AFFIX@;
 /* Public functions */
 /**
  * gsl_block@GSLAFFIX@_alloc:
- * @n:
+ * @n: (type gsize): Number of elements in the newly allocated bloc
  *
  * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
@@ -63,7 +63,7 @@ gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_alloc (const size_t n);
 
 /**
  * gsl_block@GSLAFFIX@_calloc:
- * @n:
+ * @n: (type gsize): Number of elements in the newly allocated bloc
  *
  * Returns: (nullable) (transfer full) (type GslBlock@GLIB_STRUCT_AFFIX@*):
  */
@@ -73,7 +73,7 @@ gsl_block@GSLAFFIX@ *gsl_block@GSLAFFIX@_calloc (const size_t n);
 
 /**
  * gsl_block@GSLAFFIX@_free:
- * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*):
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*): A block that will be freed
  */
 #ifdef GIR_SCANNER
 void gsl_block@GSLAFFIX@_free (gsl_block@GSLAFFIX@ * b);
@@ -92,6 +92,55 @@ void gsl_block@GSLAFFIX@_free (gsl_block@GSLAFFIX@ * b);
  * to introspection. Therefore, the underlying structure members are a better
  * choice to handle access.
  */
+
+/**
+ * gsl_block@GSLAFFIX@_fwrite:
+ * @stream:
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*):
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_block@GSLAFFIX@_fwrite(FILE * stream, const gsl_block * b);
+#endif
+
+/**
+ * gsl_block@GSLAFFIX@_fread:
+ * @stream:
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*):
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_block@GSLAFFIX@_fread(FILE * stream, gsl_block * b);
+#endif
+
+/**
+ * gsl_block@GSLAFFIX@_fprintf:
+ * @stream:
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*):
+ * @format:
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_block@GSLAFFIX@_fprintf(FILE * stream, const gsl_block * b, const char * format);
+#endif
+
+/**
+ * gsl_block@GSLAFFIX@_fscanf:
+ * @stream:
+ * @b: (type GslBlock@GLIB_STRUCT_AFFIX@*):
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_block@GSLAFFIX@_fscanf(FILE * stream, gsl_block * b);
+#endif
 
 GType gsl_block@GSLAFFIX@_get_type (void) G_GNUC_CONST;
 

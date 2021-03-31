@@ -72,6 +72,7 @@ prefix = get_option('prefix')
 includedir = join_paths(prefix, get_option('includedir'))
 package_subdir = get_option('package_subdir') # When used as subproject
 libdir = join_paths(get_option('libdir'))
+gigsl_datadir = get_option('datadir')
 gigsl_girdir = join_paths(get_option('datadir'), 'gir-1.0')
 typelibdir = join_paths(get_option('libdir'), 'girepository-1.0')
 
@@ -107,4 +108,5 @@ if get_option('enable_tests')
   subdir('test')
 endif
 
+subdir('docs/reference')
 

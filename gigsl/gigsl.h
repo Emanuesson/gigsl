@@ -28,6 +28,7 @@
 #include <gigsl/gigsl-block.h>
 #include <gigsl/gigsl-vector.h>
 #include <gigsl/gigsl-matrix.h>
+#include <gigsl/gigsl-sys.h>
 
 #undef __GGSL_H_INSIDE__
 

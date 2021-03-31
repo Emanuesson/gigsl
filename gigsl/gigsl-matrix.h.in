@@ -181,6 +181,55 @@ INLINE_DECL @CTYPE@
 gsl_matrix@GSLAFFIX@_get(const gsl_matrix@GSLAFFIX@ * m, const size_t i, const size_t j);
 #endif
 
+/**
+ * gsl_matrix@GSLAFFIX@_fwrite:
+ * @stream:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@*):
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_matrix@GSLAFFIX@_fwrite(FILE * stream, const gsl_matrix@GSLAFFIX@ * m);
+#endif
+
+/**
+ * gsl_matrix@GSLAFFIX@_fread:
+ * @stream:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@*):
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_matrix@GSLAFFIX@_fread(FILE * stream, gsl_matrix@GSLAFFIX@ * m);
+#endif
+
+/**
+ * gsl_matrix@GSLAFFIX@_fprintf:
+ * @stream:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@*):
+ * @format:
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_matrix@GSLAFFIX@_fprintf(FILE * stream, const gsl_matrix@GSLAFFIX@ * m, const char * format);
+#endif
+
+/**
+ * gsl_matrix@GSLAFFIX@_fscanf:
+ * @stream:
+ * @m: (type GslMatrix@GLIB_STRUCT_AFFIX@*):
+ *
+ * Returns:
+ */
+#ifdef GIR_SCANNER
+int
+gsl_matrix@GSLAFFIX@_fscanf(FILE * stream, gsl_matrix@GSLAFFIX@ * m);
+#endif
+
 /* The following functions are part of the gigsl only and appeared to be usefull. */
 /**
  * gsl_matrix@GSLAFFIX@_set_and_expand:

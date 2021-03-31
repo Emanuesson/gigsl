@@ -15,4 +15,6 @@ option('python',
 option('package_subdir', type: 'string', value: '',
   description: 'Subdirectory to append to all installed files, for use as subproject'
 )
+option('gtk_doc', type: 'boolean', value: false,
+  description : 'Build API reference and tools documentation')
 
