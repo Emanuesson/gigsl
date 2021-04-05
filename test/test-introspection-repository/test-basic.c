@@ -50,8 +50,6 @@ test_introspection_basic (void)
       return;
     }
 
-//  in_args[0].v_pointer = (gpointer)"domain";
-//  in_args[1].v_pointer = (gpointer)"glib-print.c";
   in_args[0].v_size = 5;
   in_args[1].v_size = 2;
 

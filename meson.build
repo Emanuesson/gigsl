@@ -1,23 +1,12 @@
 project('gsl-gir', 'c',
   license : 'GPLv2+',
   version : '0.2.5',
-  meson_version : '>=0.55',
+  meson_version : '>=0.53',
   default_options : [ 'warning_level=3',
                       'buildtype=debugoptimized',
                       'c_std=gnu11',
                       ],
 )
-
-#add_global_arguments(['-D_Float128=double',
-#                      '-fno-omit-frame-pointer',
-#                      '-fno-common',
-#                      '-Wno-missing-field-initializers',
-#                      '-Wno-sign-compare',
-#                      '-Wno-strict-aliasing',
-#                      '-Wno-uninitialized',
-#                      '-Wno-unused-parameter',
-#                      ],
-#                     language: 'c')
 
 global_c_args = []
 gigsl_test_c_args = [

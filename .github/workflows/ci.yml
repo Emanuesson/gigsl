@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+      - name: Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y gcc git meson valgrind gobject-introspection \
+            pkg-config libgsl-dev cmake libglib2.0-dev python3-gi \
+            libgirepository1.0-dev
+      - name: Prebuild
+        run: |
+          rm -rf build
+          meson setup \
+            --buildtype=release \
+            -Dbuild_docs=disabled \
+            -Dtest=true \
+            build
+      - name: Build
+        run: |
+          ninja -C build
+      - name: Test
+        run: |
+          ninja -C build test

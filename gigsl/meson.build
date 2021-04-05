@@ -450,7 +450,7 @@ if introspection_available
     install_dir_gir: gigsl_girdir,
     install_dir_typelib: typelibdir,
     header: 'gigsl/ggsl.h',
-    fatal_warnings: true,
+    #fatal_warnings: true,
     extra_args: [ '--pkg-export=libgigsl-1.0',
                   '--quiet',
                   '-DGIR_SCANNER'

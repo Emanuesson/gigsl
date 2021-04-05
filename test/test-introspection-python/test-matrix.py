@@ -5,7 +5,6 @@ import gi
 
 class MatrixTest(unittest.TestCase):
     def setUp(self):
-#        gi.require_version ('Gtk', '3.0')
         gi.require_version ('LibGsl', '0.2')
 
     def testMatrixDoubleAlloc(self):

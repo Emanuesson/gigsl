@@ -19,18 +19,6 @@ if get_option('gtk_doc')
   src_dir_conf = configuration_data()
   src_dir_conf.set('SRC_DIR', meson.source_root())
 
-  private_headers = [
-  ]
-
-  images = [
-  ]
-
-  content_files = [
-  ]
-
-  expand_content_files = [
-  ]
-
   configure_file(input: 'version.xml.in', output: 'version.xml', configuration: version_conf)
 
   gnome.gtkdoc('gigsl',
@@ -40,10 +28,6 @@ if get_option('gtk_doc')
                  gigsl_src_inc,
                ],
                dependencies: libgigsl_dep,
-#               scan_args: [
-#                 '--ignore-decorators=_GDK_EXTERN|G_GNUC_WARN_UNUSED_RESULT',
-#                 '--ignore-headers=' + ' '.join(private_headers),
-#               ],
                mkdb_args: [
                  '--default-includes=gigsl/gigsl.h',
                ],
@@ -52,14 +36,7 @@ if get_option('gtk_doc')
                  '--extra-dir=@0@'.format(join_paths(glib_docpath, 'glib')),
                  '--extra-dir=@0@'.format(join_paths(glib_docpath, 'gobject')),
                  '--extra-dir=@0@'.format(join_paths(glib_docpath, 'gio')),
-#                 '--extra-dir=@0@'.format(cairo_docpath),
-#                 '--extra-dir=@0@'.format(gdkpixbuf_docpath),
-#                 '--extra-dir=../gdk',
-#                 '--extra-dir=../gsk',
                ],
-#               content_files: content_files,
-#               expand_content_files: expand_content_files,
-#               html_assets: images,
                install: true)
 
 endif
